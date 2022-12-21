@@ -1,0 +1,38 @@
+- hosts: centos
+  
+  tasks:
+  
+  - debug:
+      msg: "{{ ansible_os_family }}"
+  
+  - name: install the most fresh version of Apache 
+    yum:
+      name: "{{ package }}"
+      state: latest
+  
+  - name: make sure HTTPD is started and enabled 
+    systemd:
+      state: started
+      enabled: yes
+      name: "{{ package }}"
+
+  - name: Install a list of packages
+    yum:
+     name:
+       - wget
+       - unzip
+     state: present
+    
+  - name: Unarchive a file that needs to be downloaded 
+    unarchive: 
+      src: "{{ template_internet_source }}"
+      dest: /tmp/
+      remote_src: yes
+ 
+  - name: Copy files    
+    copy: 
+      src: "{{ template_tmp_source }}"
+      dest: /var/www/html
+      remote_src: yes  
+
+  

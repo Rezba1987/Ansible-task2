@@ -1,0 +1,3 @@
+package: "apache2"
+template_internet_source: "https://www.free-css.com/assets/files/free-css-templates/download/page258/highway.zip"
+template_tmp_source: "/tmp/templatemo_520_highway"
